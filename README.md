@@ -44,3 +44,15 @@ gem install rails -v 5.2.3
 * Deployment instructions
 
 * ...
+
+## Data Model Notes To Change
+* Add salt to user table (for password)
+* Add email to user table (will use as username)
+* Add link for profile picture to user table (I think this is the best way to store it, dump the image in a bucket somewhere, save the link to it in the database. We will need to do this for recipes since you need to have preview images for a recipe so may as well do it here too)
+* New Table: RecipeImages
+  * id (PK)
+  * recipeId (FK)
+  * fullResolutionUrl (string)
+  * minifiedUrl (string)
+* Add column to recipes for bannerImage (optional, FK to recipeImages)
+* Add column to recipes for previewImage (do we make this mandatory or optional? FK to RecipeImages)
