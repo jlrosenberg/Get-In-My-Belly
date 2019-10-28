@@ -1,16 +1,16 @@
 ### GET API/v1/recipes
 This is the endpoint that is used to fetch a list of recipes that meet a certain set of criteria. This parameters are passed in through the url. Below are a few examples of this format.
-GET api/v1/recipes?authorId={ID}
-GET api/v1/recipes?tagIds={ID}
-GET api/v1/recipes?authorId={ID}&tagIds={ID2, ID3}
-GET api/v1/recipes?favoritedBy={ID}
+* GET api/v1/recipes?authorId={ID}
+* GET api/v1/recipes?tagIds={ID}
+* GET api/v1/recipes?authorId={ID}&tagIds={ID2, ID3}
+* GET api/v1/recipes?favoritedBy={ID}
 ...
 
-The three query parameter types initially supported will be authorId, favoritedBy, and tagIds. authorId and favoritedBy will only accept one ID in a query, whereas tagIds should allow you to provide as many as you want, seperated by commas.
+The three query parameter types initially supported will be authorId, favoritedBy, and tagIds. authorId and favoritedBy will only accept one ID in a query, whereas tagIds should allow you to provide as many as you want, seperated by commas.\n
 
-The results provided by this endpoint make no garuntees about order. Each recipe will need to be fetched by the client, and the client can order and render recipes in any method they wish. In the future, this would be a good thing to change for performance benefits - the endpoint could take in a sortBy parameter and sort on the backend instead, but that kind of feature does not belong in a v1 endpoint.
+The results provided by this endpoint make no garuntees about order. Each recipe will need to be fetched by the client, and the client can order and render recipes in any method they wish. In the future, this would be a good thing to change for performance benefits - the endpoint could take in a sortBy parameter and sort on the backend instead, but that kind of feature does not belong in a v1 endpoint.\n
 
-A user does not need to be authenticated or signed in to hit this endpoint.
+A user does not need to be authenticated or signed in to hit this endpoint.\n
 ```json
 {
   "status":"200",
