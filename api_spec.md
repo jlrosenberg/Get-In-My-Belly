@@ -360,3 +360,18 @@ On success, you should recieve the following response:
 {
   "TODO":"TODO"
 }
+```
+
+### POST api/v1/logout
+```json
+{
+  "TODO":"TODO"
+}
+```
+
+On success, you should recieve the following response:
+```json
+{
+  "TODO":"TODO"
+}
+```
