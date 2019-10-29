@@ -333,7 +333,6 @@ THIS ENDPOINT IS NOT YET FINISHED - I NEED TO FINISH FIGURING OUT HOW WE ARE DOI
     "lastName": "Cuban",
     "email": "markcuban@sharks.com",
     "profilePictureUrl": "http://www.link.to.profile.pic.com/img.jpg"
-    // I'm not sure how it works creating a new account to set the password, obviously we can't transmit it as raw text. I will figure that portion out when I have internet to google how its usually done with devise for small Rails projects.
   }
 }
 ```
