@@ -66,7 +66,7 @@ Returns a list of measurement units currently supported by the application. The 
 ```
 
 ### POST api/v1/ingredients
-Create a new ingredient. This will 403 if the user is not logged in, and will 500 if an ingredient exists with the same name already.
+Create a new ingredient. This will 403 if the user is not logged in, and will 500 if an ingredient exists with the same name already. Names are not case sensitive, so if an entity with the name of "flour" exists in the database, then a POST request with the name "Flour" will be rejected.
 ```json
 {
   "path":"api/v1/ingredients",
@@ -220,6 +220,54 @@ Returns a list of existing recipe tags, along with the count of how many recipes
 }
 ```
 
+### GET api/v1/shopping_list
+This endpoint also supports url query parameters, in fact, they are required for it to function properly. The format expected is shown below:
+
+GET api/v1/shopping_list?recipeIds=3,36,287
+
+This will return a list of the ingredients needed to make all of these recipes, and the total quantity of each ingredient required. It will display the ingredients in quantities of their defaultMeasurementUnit. It is worth noting that all quantities will be returned in decimal format - it is up to the user client to convert these into fractions if desired. All decimals will be trancated after 3 decimal degits (i.e. 1/3 will be represented as 0.333).
+
+If some of the recipeIds provided to the endpoint are valid, and some are not, the endpoint will discard the invalid ones and return the summed ingredient list for the valid recipes. Duplicate recipeIds will be ignored.
+
+A user does not need to be logged in or authenticated to hit this endpoint.
+
+An example response is shown below:
+```json
+{
+  "status":"200",
+  "path":"api/v1/shopping_list",
+  "method":"GET",
+  "response":{
+    "recipeIds":["3", "36", "287"],
+    "ingredients":[
+      {
+        "id": "5",
+        "name": "Almond Flour",
+        "quantity": "0.333",
+        "measurementUnitId": "6"
+      },
+      {
+        "id": "4",
+        "name": "Eggs",
+        "quantity": "1",
+        "measurementUnitId": "4"
+      },
+      {
+        "id": "7",
+        "name": "Baking Powder",
+        "quantity": "0.5",
+        "measurementUnitId": "2"
+      },
+      {
+        "id": "24",
+        "name": "Butter",
+        "quantity": "1",
+        "measurementUnitId": "1"
+      }
+    ]
+  }
+}
+```
 
 ### GET api/v1/user/{id}
 
