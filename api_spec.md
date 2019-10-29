@@ -187,11 +187,43 @@ Returns detailed information about a recipe. This is intended to be used to rend
         "order": "3",
         "instruction": "Put the mug back in the microwave, and heat at full power for 90 seconds."
       }
+    ],
+    "reviews":[
+      "www.getinmybelly.com/api/v1/reviews/256",
+      "www.getinmybelly.com/api/v1/reviews/62",
+      "www.getinmybelly.com/api/v1/reviews/95"
     ]
   }
 }
 ```
 
+### GET api/v1/reviews/{id}
+Returns the specified review. You do not need to be logged in or authenticated to hit this endpoint.
+```json
+{
+  "status":"200",
+  "method":"GET",
+  "path":"api/v1/reviews/23",
+  "response":{
+    "authorId":"5",
+    "stars":"4",
+    "text":"This recipe was really good! My only problem with it was that it had a very short shelflife."
+  }
+}
+```
+
+### POST api/v1/reviews
+Create a new recipe review. If the user making this request is not logged in, this will return with a 403 Access Forbidden.
+
+```json
+{
+  "method":"POST",
+  "request":{
+    "stars":"5",
+    "text":"This recipe was a home run with the family! The chicken was juicy and tender, and the paella was truely inspired! I plan on adding this in as a regular staple on my families dinner table"
+  }
+}
+```
 
 ### GET api/v1/tags
 Returns a list of existing recipe tags, along with the count of how many recipes exist with each of these tags. A user does not need to be authenticated or signed in to hit this endpoint.
